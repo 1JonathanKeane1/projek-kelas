@@ -13,6 +13,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/assets/landing/css/style.css">
 
 </head>

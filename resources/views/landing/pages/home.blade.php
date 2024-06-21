@@ -299,14 +299,13 @@
     </div>
 </section>
 
-<section class="cta">
-    <div class="container-fluid cta">
-        <div class="content pt-5">
-            <h3>Tingkatkan Kualitas Perusahaan Anda</h3>
-            <p>Kami ingin membantu dan menunjukkan kepada Anda bagaimana Kelas corp dapat membantu dalam mengelola pelatihan dan membuat prosesnya lebih cepat dan lebih mudah.</p>
-            <a type="button" class="btn btn-primary">Ajukan Demo</a>
-        </div>
+<div class="container-fluid cta">
+    <div class="content pt-5">
+        <h3>Tingkatkan Kualitas Perusahaan Anda</h3>
+        <p>Kami ingin membantu dan menunjukkan kepada Anda bagaimana Kelas corp dapat membantu dalam mengelola pelatihan
+            dan membuat prosesnya lebih cepat dan lebih mudah.</p>
+        <a type="button" class="btn btn-primary">Ajukan Demo</a>
     </div>
-</section>
+</div>
 
 @endsection
