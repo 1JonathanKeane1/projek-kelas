@@ -15,9 +15,8 @@ class CreatePaketsTable extends Migration
     {
         Schema::create('pakets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idKelas');
             $table->string('paket');
-            $table->float('harga');
+            $table->double('harga');
             $table->timestamps();
         });
     }

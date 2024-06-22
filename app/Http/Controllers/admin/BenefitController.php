@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Benefit;
+use App\Models\DetailBenefit;
 
 class BenefitController extends Controller
 {
@@ -79,7 +80,6 @@ class BenefitController extends Controller
      */
     public function update(Request $request, Benefit $benefit)
     {
-        // dd($benefit);
 
         $data = $request->validate([
             'benefit'=> 'required'
@@ -98,7 +98,12 @@ class BenefitController extends Controller
      */
     public function destroy(Benefit $benefit)
     {
-        
+        $detail = DetailBenefit::where('idBenefit', $benefit->id)->delete();
+
+        if ($detail) {
+            DetailBenefit::where('id', $benefit->id)->delete();
+        }
+
         Benefit::destroy($benefit->id);
 
         return redirect()->route('benefit.index')

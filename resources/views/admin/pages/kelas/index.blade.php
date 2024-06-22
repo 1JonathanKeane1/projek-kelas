@@ -17,6 +17,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Kelas</th>
+                <th scope="col">Nama Paket</th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
@@ -25,6 +26,8 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $k->kelas }}</td>
+                <td>{{ $k->paket->paket }}</td>
+                <td>{{ $k->mentor->mentor }}</td>
                 <td>
                     <button type="button" class="btn btn-primary edit-btn" data-bs-toggle="modal"
                         data-bs-target="#editkelas{{ $k->id }}">
@@ -55,12 +58,33 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="kelas" class="form-label">Nama Kelas</label>
-                        <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Nama Kelas" required>
+                        <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Nama Kelas"
+                            required>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+
+                    <div class="mb-3">
+                        <label for="idPaket" class="form-label">Paket</label>
+                        <select class="form-select" name="idPaket" aria-label="Default select example">
+                            <option value="" selected>pilih paket</option>
+                            @foreach ($paket as $p)
+                            <option value="{{ $p->id }}">{{ $p->paket }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="idMentor" class="form-label">Mentor</label>
+                        <select class="form-select" name="idMentor" aria-label="Default select example">
+                            <option value="" selected>pilih Mentor</option>
+                            @foreach ($mentor as $m)
+                            <option value="{{ $m->id }}">{{ $m->mentor }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -69,7 +93,8 @@
 
 <!-- Modal Edit Kelas -->
 @foreach($kelas as $kel)
-<div class="modal fade" id="editkelas{{ $kel->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editkelas{{ $kel->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="/admin/kelas/{{ $kel->id }}" method="POST">
@@ -82,11 +107,33 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="kelas" class="form-label">Nama Kelas</label>
-                        <input type="text" class="form-control" id="kelas" name="kelas" value="{{ $kel->kelas }}" required>
+                        <input type="text" class="form-control" id="kelas" name="kelas" value="{{ $kel->kelas }}"
+                            required>
                     </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+
+                    <div class="mb-3">
+                        <label for="idPaket" class="form-label">Paket</label>
+                        <select class="form-select" name="idPaket" aria-label="Default select example">
+                            <option value="{{ $kel->idPaket }}" selected>{{ $kel->paket->paket }}</option>
+                            @foreach ($paket as $p)
+                            <option value="{{ $p->id }}">{{ $p->paket }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="idMentor" class="form-label">Mentor</label>
+                        <select class="form-select" name="idMentor" aria-label="Default select example">
+                            <option value="{{ $kel->idMentor }}" selected>{{ $kel->mentor->mentor }}</option>
+                            @foreach ($mentor as $m)
+                            <option value="{{ $m->id }}">{{ $m->mentor }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
                 </div>
             </form>
         </div>

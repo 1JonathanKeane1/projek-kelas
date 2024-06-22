@@ -31,7 +31,7 @@ class AdminAuthController extends Controller
             return redirect('/admin')->with('success', 'Login Success!');
         }
 
-        return back()->with('loginError', 'Login Failed');
+        return back()->with('error', 'Login Failed');
     }
 
     public function logout(Request $request) 

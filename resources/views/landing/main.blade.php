@@ -22,13 +22,22 @@
 
     @include('landing/layout/navbar')
 
+    @include('/landing/partial/alert')
+
     @yield('content')
 
     @include('landing/layout/footer')
 
+    @include('landing/modal/login')
+
+    @auth
+        @include('landing/modal/pembelian')
+    @endauth
+
 
     <!-- script -->
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/jquery-3.3.1.min.js"></script>
 
 </body>
 

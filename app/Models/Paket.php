@@ -13,11 +13,14 @@ class Paket extends Model
 
     protected $fillable = [
         "paket",
-        "idKelas",
         "harga",
     ];
 
     public function kelas (){
-    	return $this->belongsTo(Kelas::class, 'idKelas');
+    	return $this->hasMany(Kelas::class, 'idPaket');
+    }
+
+    public function detailpaket (){
+    	return $this->hasMany(DetailPaket::class, 'idPaket');
     }
 }

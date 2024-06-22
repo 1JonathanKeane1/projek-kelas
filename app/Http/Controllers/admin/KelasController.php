@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Kelas;
 use App\Models\Paket;
+use App\Models\Mentor;
 
 class KelasController extends Controller
 {
@@ -18,7 +19,9 @@ class KelasController extends Controller
     public function index()
     {
         return view("admin.pages.kelas.index", [
-            'kelas'   => Kelas::latest()->get()
+            'kelas'   => Kelas::latest()->get(),
+            'paket'   => Paket::latest()->get(),
+            'mentor'  => Mentor::latest()->get(),
         ]);
     }
 
@@ -41,7 +44,9 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'kelas' => 'required|max:255'
+            'kelas' => 'required|max:255|unique:kelas',
+            'idPaket' => 'required',
+            'idMentor' => 'required'
         ]);
 
         Kelas::create($data);
@@ -82,7 +87,9 @@ class KelasController extends Controller
     {
 
         $data = $request->validate([
-            'kelas'=> 'required'
+            'kelas'=> 'required',
+            'idPaket'=> 'required',
+            'idMentor' => 'required'
         ]);
 
         Kelas::where('id', $id)->update($data);
@@ -98,12 +105,6 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-
-        $paket = Paket::where('idKelas', $id)->first();
-        
-        if ($paket) {
-            Paket::where('idKelas', $id)->delete();
-        }
 
         Kelas::where('id', $id)->delete();
 

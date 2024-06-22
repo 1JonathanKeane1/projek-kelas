@@ -12,4 +12,8 @@ class Benefit extends Model
     protected $guarded = ['id'];
 
     protected $fillable = ['benefit'];
+
+    public function detail(){
+        return $this->hasMany(DetailBenefit::class, 'idBenefit');
+    }
 }

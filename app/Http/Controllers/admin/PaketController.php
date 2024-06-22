@@ -44,7 +44,6 @@ class PaketController extends Controller
         $data = $request->validate([
             'paket'     => 'required|max:255',
             'harga'     => 'required',
-            'idKelas'   => 'required',
         ]);
 
         Paket::create($data);
@@ -88,7 +87,6 @@ class PaketController extends Controller
         $data = $request->validate([
             'paket'=> 'required',
             'harga'=> 'required',
-            'idKelas'=> 'required'
         ]);
 
         Paket::where('id', $paket->id)->update($data);
@@ -104,7 +102,11 @@ class PaketController extends Controller
      */
     public function destroy(Paket $paket)
     {
-        // dd($paket);
+        $kelas = Kelas::where('idPaket', $id)->first();
+        
+        if ($kelas) {
+            Kelas::where('idPaket', $id)->delete();
+        }
 
         Paket::destroy($paket->id);
 

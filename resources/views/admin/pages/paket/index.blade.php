@@ -28,7 +28,6 @@
                 <th scope="col">#</th>
                 <th scope="col">Nama paket</th>
                 <th scope="col">Harga Paket</th>
-                <th scope="col">Kelas</th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
@@ -38,7 +37,6 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $p->paket }}</td>
                 <td>{{ $p->harga }}</td>
-                <td>{{ $p->kelas->kelas }}</td>
                 <td>
                     <button type="button" class="btn btn-primary edit-btn" data-bs-toggle="modal"
                         data-bs-target="#editpaket{{ $p->id }}">
@@ -77,15 +75,6 @@
                         <input type="number" class="form-control" id="harga" name="harga" placeholder="Harga Paket"
                             required>
                     </div>
-                    <div class="mb-3">
-                    <label for="idKelas" class="form-label">Kelas</label>
-                        <select class="form-select" name="idKelas" aria-label="Default select example">
-                            <option value="" selected>pilih kelas</option>
-                            @foreach ($kelas as $k)
-                            <option value="{{ $k->id }}">{{ $k->kelas }}</option>
-                            @endforeach
-                        </select>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -119,15 +108,6 @@
                         <label for="harga" class="form-label">Harga paket</label>
                         <input type="number" class="form-control" id="harga" name="harga" value="{{ $pak->harga }}"
                             required>
-                    </div>
-                    <div class="mb-3">
-                    <label for="idKelas" class="form-label">Kelas</label>
-                        <select class="form-select" name="idKelas" aria-label="Default select example">
-                            <option value="{{ $pak->idKelas }}" selected>{{ $pak->kelas->kelas }}</option>
-                            @foreach ($kelas as $k)
-                            <option value="{{ $k->id }}">{{ $k->kelas }}</option>
-                            @endforeach
-                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

@@ -11,9 +11,17 @@ class Kelas extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['kelas'];
+    protected $fillable = ['kelas', 'idPaket', 'idMentor'];
 
     public function paket(){
-        return $this->hasMany(Paket::class, 'idKelas');
+        return $this->belongsTo(Paket::class, 'idPaket');
+    }
+
+    public function mentor(){
+        return $this->belongsTo(Mentor::class, 'idMentor');
+    }
+
+    public function video(){
+        return $this->hasMany(VideoKelas::class, 'idKelas');
     }
 }

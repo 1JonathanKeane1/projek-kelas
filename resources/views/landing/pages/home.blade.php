@@ -138,33 +138,15 @@
                             <p>Berdayakan tim Anda untuk mencapai kesuksesan dengan data yang akurat dan solusi
                                 pembelajaran yang terintegrasi. Transformasikan pengelolaan sumber daya manusia Anda dan
                                 hadirkan produktivitas yang unggul dengan LMS kami!</p>
-                            <div class="card">
-                                <div class="card-header">
-                                    Issued Certificated
-                                </div>
-                                <div class="card-body">
-                                    <p>Berikan kemudahan dalam mengatur dan mendistribusikan sertifikat kepada setiap
-                                        karyawan.</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    On Boarding
-                                </div>
-                                <div class="card-body">
-                                    <p>Memastikan setiap karyawan siap memberikan kontribusi maksimal sejak hari pertama
-                                        mereka bergabung</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    Training On-demand
-                                </div>
-                                <div class="card-body">
-                                    <p>Training On-Demand yang berfokus pada pengalaman pengguna, pelatihan berkualitas
-                                        tinggi menjadi lebih mudah diakses dan disesuaikan dengan kebutuhan Anda.</p>
-                                </div>
-                            </div>
+                            <p class="benefit-head ps-3">Issued Certificated</p>
+                            <p>Berikan kemudahan dalam mengatur dan mendistribusikan sertifikat kepada setiap karyawan.
+                            </p>
+                            <p class="benefit-head ps-3"> On Boarding</p>
+                            <p>Memastikan setiap karyawan siap memberikan kontribusi maksimal sejak hari pertama
+                                mereka bergabung</p>
+                            <p class="benefit-head ps-3">Training On-demand</p>
+                            <p>Training On-Demand yang berfokus pada pengalaman pengguna, pelatihan berkualitas
+                                tinggi menjadi lebih mudah diakses dan disesuaikan dengan kebutuhan Anda.</p>
                         </div>
                         <div class="col-md">
                             <img src="" alt="">
@@ -183,33 +165,45 @@
     <div class="container mt-5 mb-3">
         <h3 class="text-center mb-4 mt-2">Pilihan Paket Untuk Perusahaan di Kelas Center</h3>
         <div class="row mb-2">
+            @foreach ($dpaket as $p)
             <div class="col-md">
-                <div class="card" style="width: 18rem;">
+                <div class="card card-paket">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $p->paket->paket }}</h5>
+                        <p class="card-text">{{ $p->isi }}</p>
+                        <p><strong>{{ $p->paket->harga }}</strong>/bulan</p>
+                        @auth
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#beliModal{{ $p->paket->id }}">
+                            Pilih Paket
+                        </button>
+                        @else
+                        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#authModal"
+                            type="button">Pilih Paket</a>
+                        @endauth
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <!-- <div class="col-md">
+                <div class="card card-paket">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                        <button class="btn btn-primary">Pilih Paket</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card card-paket">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the card's content.</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                </div>
-            </div>
+            </div> -->
         </div>
         <div class="container enterprise-bar">
             <div class="text">Enterprise</div>

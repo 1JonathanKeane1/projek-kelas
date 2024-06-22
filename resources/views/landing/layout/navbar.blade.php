@@ -32,7 +32,20 @@
 
             <div class="d-flex">
                 <a class="btn btn-primary me-2" href="#">Ajukan Demo</a>
-                <a class="btn btn-secondary" href="#">Masuk</a>
+                @auth
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Halo, {{ Auth::user()->name }}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="/user/kelas">Kelas</a></li>
+                        <li><a class="dropdown-item" href="/user/logout">Keluar</a></li>
+                    </ul>
+                </div>
+                @else
+                <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#authModal" type="button">Masuk</a>
+                @endauth
             </div>
         </div>
     </div>

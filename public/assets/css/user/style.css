@@ -1,0 +1,53 @@
+/* login */
+.login-form {
+    width: 350px;
+    margin: 150px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+  }
+
+  /* sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #343a40;
+    padding-top: 3.5rem; /* Sesuaikan dengan navbar fixed jika ada */
+  }
+  
+  .sidebar a {
+    padding: 10px 15px;
+    display: block;
+    color: #f8f9fa;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    background-color: #495057;
+  }
+  
+  .sub-menu {
+    padding-left: 1rem;
+  }
+
+.main-content {
+    margin-left: 250px; /* Sesuaikan margin kiri untuk menyembunyikan/menampilkan sidebar */
+    padding: 20px;
+}
+
+.gambar-contoh {
+  max-width: 500px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 0; /* Sembunyikan sidebar pada layar kecil */
+    }
+    .main-content {
+        margin-left: 0; /* Reset margin kiri saat sidebar disembunyikan */
+    }
+}
