@@ -89,7 +89,7 @@ class DetailPaketTableSeeder extends Seeder
         ]);
 
         DetailPaket::create([
-            "idPaket"=> "1",
+            "idPaket"=> "2",
             "isi"=> "Sertifikat",
         ]);
 
