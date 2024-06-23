@@ -20,5 +20,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin123'),
         ]);
+
+        $this->call([
+            BenefitTableSeeder::class,
+            DetailBenefitTableSeeder::class,
+            PaketTableSeeder::class,
+            DetailPaketTableSeeder::class,
+            VideoTableSeeder::class,
+            DetailVideoTableSeeder::class,
+        ]);
     }
 }
