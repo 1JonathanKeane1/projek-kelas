@@ -47,15 +47,22 @@ class PendapatanMentorController extends Controller
                     $video = VideoKelas::with('waktu')->where('idKelas', $k->id)->get();
                     foreach($video as $vid) {
                         $waktutontonkelas = $vid->waktu->sum('durasi');
-                        $menit = gmdate('i', $waktutontonkelas);
-                        $persentase = ($menit / $totalwaktutonton) * 100;
-                        $totalwaktukelas[$k->id] = [
-                            'kelas'         => $k->kelas,
-                            'waktutonton'   => $menit,
-                            'persentase'    => $persentase,
-                            'paket'         => $k->idPaket,
-                            'mentor'        => $k->mentor->mentor,
-                        ];
+                        if($waktutontonkelas){
+
+                            $menit = gmdate('i', $waktutontonkelas);
+                            $persentase = ($menit / $totalwaktutonton) * 100;
+                            $totalwaktukelas[$k->id] = [
+                                'kelas'         => $k->kelas,
+                                'waktutonton'   => $menit,
+                                'persentase'    => $persentase,
+                                'paket'         => $k->idPaket,
+                                'mentor'        => $k->mentor->mentor,
+                            ];
+                        } 
+                        else
+                        {
+                            return redirect('/admin/pendapatan')->with('success','Belum ada durasi');
+                        }
                     }
                 }
             }

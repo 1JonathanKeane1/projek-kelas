@@ -156,7 +156,7 @@
                         <p><strong class="harga">Rp{{ $p->harga }}</strong>/bulan</p>
                         @auth
                         <button type="button" class="btn btn-paket" data-bs-toggle="modal"
-                            data-bs-target="#beliModal{{ $p->paket->id }}">
+                            data-bs-target="#beliModal{{ $p->id }}">
                             Pilih Paket
                         </button>
                         @else
@@ -185,7 +185,7 @@
                         <p><strong class="harga">{{ $p->harga }}</strong>/bulan</p>
                         @auth
                         <button type="button" class="btn btn-paket" data-bs-toggle="modal"
-                            data-bs-target="#beliModal{{ $p->paket->id }}">
+                            data-bs-target="#beliModal{{ $p->id }}">
                             Pilih Paket
                         </button>
                         @else

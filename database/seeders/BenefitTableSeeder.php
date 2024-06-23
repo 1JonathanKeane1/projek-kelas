@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+use App\Models\Benefit;
+
 class BenefitTableSeeder extends Seeder
 {
     /**

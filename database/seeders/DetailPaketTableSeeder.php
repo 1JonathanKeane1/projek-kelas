@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+
+use App\Models\DetailPaket;
+
 class DetailPaketTableSeeder extends Seeder
 {
     /**
@@ -36,6 +39,11 @@ class DetailPaketTableSeeder extends Seeder
         DetailPaket::create([
             "idPaket"=> "1",
             "isi"=> "Update pergantian kelas / 3 bulan",
+        ]);
+
+        DetailPaket::create([
+            "idPaket"=> "1",
+            "isi"=> "Sertifikat",
         ]);
 
         DetailPaket::create([
@@ -78,6 +86,11 @@ class DetailPaketTableSeeder extends Seeder
         DetailPaket::create([
             "idPaket"=> "2",
             "isi"=> "Update pergantian kelas / 3 bulan",
+        ]);
+
+        DetailPaket::create([
+            "idPaket"=> "1",
+            "isi"=> "Sertifikat",
         ]);
 
         DetailPaket::create([
@@ -125,7 +138,7 @@ class DetailPaketTableSeeder extends Seeder
 
         DetailPaket::create([
             "idPaket"=> "3",
-            "isi"=> "sertifikat",
+            "isi"=> "Sertifikat",
         ]);
 
         DetailPaket::create([

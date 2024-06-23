@@ -1,5 +1,5 @@
-@foreach ($dpaket as $dpt)
-<div class="modal fade" id="beliModal{{ $dpt->paket->id }}" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+@foreach ($paket as $dpt)
+<div class="modal fade" id="beliModal{{ $dpt->id }}" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,14 +11,14 @@
                     <!-- Login Form -->
                     <form action="/user/beli" method="post">
                         @csrf
-                        <input type="text" name="idpaket" id="idpaket" value="{{ $dpt->paket->id }}" hidden>
+                        <input type="text" name="idpaket" id="idpaket" value="{{ $dpt->id }}" hidden>
                         <div class="mb-3">
                             <label for="paket" class="form-label">Nama Paket</label>
-                            <input type="text" class="form-control" name="paket" id="paket" value="{{ $dpt->paket->paket }}" disabled>
+                            <input type="text" class="form-control" name="paket" id="paket" value="{{ $dpt->paket }}" disabled>
                         </div>
                         <div class="mb-3">
                             <label for="harga" class="form-label">Harga Paket</label>
-                            <input type="text" class="form-control" name="harga" id="harga" value="{{ $dpt->paket->harga }}" disabled>
+                            <input type="text" class="form-control" name="harga" id="harga" value="{{ $dpt->harga }}" disabled>
                         </div>
                         <div class="mb-3">
                             <label for="user" class="form-label">Nama User</label>

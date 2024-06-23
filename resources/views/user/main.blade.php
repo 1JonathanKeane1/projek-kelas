@@ -32,9 +32,8 @@
         @endif
 
         @yield('content')
-        <div>
 
-            @include('user/layout/footer')
+        @include('user/layout/footer')
 
 
             <!-- script -->

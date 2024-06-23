@@ -63,7 +63,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/user/logout', [UserAuthController::class, 'logout']);
 
     Route::post('/user/beli', [PembelianController::class, 'beli']);
-    Route::get('/user/kelas', [UserKelasController::class, 'index']);
+    Route::get('/user/kelas',   [UserKelasController::class, 'index']);
     Route::get('/user/tonton/{id}', [UserKelasController::class, 'tonton']);
     Route::post('/user/simpan', [DurasiController::class, 'simpan']);
 });

@@ -15,7 +15,7 @@ class UserKelasController extends Controller
     public function index()
     {
         $pembelian = Pembelian::where('idUser', Auth::user()->id)->first();
-
+        
         $kelas = Kelas::where('idPaket', $pembelian->idPaket)->first();
 
         return view("user.pages.kelas.index", [
