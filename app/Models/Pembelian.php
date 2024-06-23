@@ -15,4 +15,15 @@ class Pembelian extends Model
         "idPaket",
         "idUser",
     ];
+
+    public function paket()
+    {
+        return $this->belongsTo(Paket::class, 'idPaket');
+    }
+
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idUser');
+    }
 }

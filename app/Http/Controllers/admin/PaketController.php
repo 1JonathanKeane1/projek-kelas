@@ -43,7 +43,8 @@ class PaketController extends Controller
     {
         $data = $request->validate([
             'paket'     => 'required|max:255',
-            'harga'     => 'required',
+            'harga'     => 'required|regex:/^\d+(\.\d+)?$/',
+            'harga_lama'=> 'required|regex:/^\d+(\.\d+)?$/',
         ]);
 
         Paket::create($data);
@@ -86,7 +87,8 @@ class PaketController extends Controller
 
         $data = $request->validate([
             'paket'=> 'required',
-            'harga'=> 'required',
+            'harga'=> 'required|regex:/^\d+(\.\d+)?$/',
+            'harga_lama'=> 'required|regex:/^\d+(\.\d+)?$/',
         ]);
 
         Paket::where('id', $paket->id)->update($data);

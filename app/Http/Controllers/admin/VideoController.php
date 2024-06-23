@@ -41,7 +41,6 @@ class VideoController extends Controller
     {
         $data = $request->validate([
             'nama' => 'required|max:255',
-            'link' => 'required'
         ]);
 
         Video::create($data);
@@ -82,7 +81,6 @@ class VideoController extends Controller
     {
         $data = $request->validate([
             'nama'  => 'required',
-            'link'  => 'required'
         ]);
 
         Video::where('id', $video->id)->update($data);

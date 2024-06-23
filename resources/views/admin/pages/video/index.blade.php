@@ -17,7 +17,6 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Video</th>
-                <th scope="col">link Video</th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
@@ -59,11 +58,6 @@
                         <label for="nama" class="form-label">Nama Video</label>
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Video" required>
                     </div>
-                    
-                    <div class="mb-3">
-                        <label for="link" class="form-label">Link Video</label>
-                        <input type="text" class="form-control" id="link" name="link" placeholder="Link video" required>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -74,9 +68,10 @@
     </div>
 </div>
 
-<!-- Modal Edit benefit -->
+<!-- Modal Edit Video -->
 @foreach($video as $vd)
-<div class="modal fade" id="editvideo{{ $vd->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editvideo{{ $vd->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="/admin/video/{{ $vd->id }}" method="POST">
@@ -91,11 +86,7 @@
                         <label for="nama" class="form-label">Nama Video</label>
                         <input type="text" class="form-control" id="nama" name="nama" value="{{ $vd->nama }}" required>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="link" class="form-label">Link Video</label>
-                        <input type="text" class="form-control" id="link" name="link" value="{{ $vd->link }}" required>
-                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>

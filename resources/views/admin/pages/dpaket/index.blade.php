@@ -49,7 +49,7 @@
     </table>
 </div>
 
-<!-- Modal Tambah Benefit -->
+<!-- Modal Tambah detail paket -->
 <div class="modal fade" id="tambahdpaket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                    <label for="idPaket" class="form-label">Paket</label>
+                        <label for="idPaket" class="form-label">Paket</label>
                         <select class="form-select" name="idPaket" aria-label="Default select example">
                             <option value="" selected>pilih paket</option>
                             @foreach ($paket as $p)
@@ -72,9 +72,10 @@
 
                     <div class="mb-3">
                         <label for="isi" class="form-label">Isi</label>
-                        <textarea type="textarea" class="form-control" id="isi" name="isi" placeholder="Isi" required></textarea>
+                        <textarea type="textarea" class="form-control" id="isi" name="isi" placeholder="Isi"
+                            required></textarea>
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -85,9 +86,10 @@
     </div>
 </div>
 
-<!-- Modal Edit benefit -->
+<!-- Modal Edit detailpaket -->
 @foreach($dpaket as $dpak)
-<div class="modal fade" id="editdpaket{{ $dpak->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editdpaket{{ $dpak->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="/admin/detailpaket/{{ $dpak->id }}" method="POST">
@@ -99,8 +101,8 @@
                 </div>
                 <div class="modal-body">
 
-                <div class="mb-3">
-                    <label for="idPaket" class="form-label">Paket</label>
+                    <div class="mb-3">
+                        <label for="idPaket" class="form-label">Paket</label>
                         <select class="form-select" name="idPaket" aria-label="Default select example">
                             <option value="{{ $dpak->idPaket }}" selected>{{ $dpak->paket->paket }}</option>
                             @foreach ($paket as $p)
@@ -108,16 +110,17 @@
                             @endforeach
                         </select>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="isi" class="form-label">Isi</label>
-                        <textarea type="textarea" class="form-control" id="isi" name="isi" required>{{ $dpak->isi }}</textarea>
+                        <textarea type="textarea" class="form-control" id="isi" name="isi"
+                            required>{{ $dpak->isi }}</textarea>
                     </div>
-                   
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
             </form>
         </div>
     </div>

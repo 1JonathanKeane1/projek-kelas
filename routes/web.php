@@ -10,8 +10,10 @@ use App\Http\Controllers\admin\PaketController;
 use App\Http\Controllers\admin\DetailPaketController;
 use App\Http\Controllers\admin\KelasController;
 use App\Http\Controllers\admin\VideoController;
+use App\Http\Controllers\admin\DetailVideoController;
 use App\Http\Controllers\admin\VideoKelasController;
 use App\Http\Controllers\admin\MentorController;
+use App\Http\Controllers\admin\PendapatanMentorController;
 use App\Http\Controllers\user\UserAuthController;
 use App\Http\Controllers\user\PembelianController;
 use App\Http\Controllers\user\UserKelasController;
@@ -38,13 +40,17 @@ Route::post('/admin/login', [AdminAuthController::class, 'auth']);
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/admin/logout', [AdminAuthController::class, 'logout']);
-
+    Route::get('/admin/pendapatan', [PendapatanMentorController::class, 'index']);
+    Route::post('/admin/hitung/{id}', [PendapatanMentorController::class, 'hitung']);
+    Route::get('/admin/hasil', [PendapatanMentorController::class, 'hasil']);
+    
     Route::resource('/admin/benefit', BenefitController::class);
     Route::resource('/admin/paket', PaketController::class);
     Route::resource('/admin/kelas', KelasController::class);
     Route::resource('/admin/detailbenefit', DetailBenefitController::class);
     Route::resource('/admin/detailpaket', DetailPaketController::class);
     Route::resource('/admin/video', VideoController::class);
+    Route::resource('/admin/detailvideo', DetailVideoController::class);
     Route::resource('/admin/pengajaran', VideoKelasController::class);
     Route::resource('/admin/mentor', MentorController::class);
     
@@ -52,9 +58,12 @@ Route::group(['middleware' => ['admin']], function () {
 
 Route::post('/user/regis', [UserAuthController::class, 'register']);
 Route::post('/user/login', [UserAuthController::class, 'login']);
-Route::get('/user/logout', [UserAuthController::class, 'logout']);
 
-Route::post('/user/beli', [PembelianController::class, 'beli']);
-Route::get('/user/kelas', [UserKelasController::class, 'index']);
-Route::get('/user/tonton/{id}', [UserKelasController::class, 'tonton']);
-Route::post('/user/simpan', [DurasiController::class, 'simpan']);
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/user/logout', [UserAuthController::class, 'logout']);
+
+    Route::post('/user/beli', [PembelianController::class, 'beli']);
+    Route::get('/user/kelas', [UserKelasController::class, 'index']);
+    Route::get('/user/tonton/{id}', [UserKelasController::class, 'tonton']);
+    Route::post('/user/simpan', [DurasiController::class, 'simpan']);
+});

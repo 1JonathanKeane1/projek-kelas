@@ -28,6 +28,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Judul</th>
                 <th scope="col">Isi </th>
+                <th scope="col">Benefit </th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
@@ -37,6 +38,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $db->judul }}</td>
                 <td>{{ $db->isi }}</td>
+                <td>{{ $db->benefit->benefit }}</td>
                 <td>
                     <button type="button" class="btn btn-primary edit-btn" data-bs-toggle="modal"
                         data-bs-target="#editdbenefit{{ $db->id }}">
@@ -54,7 +56,7 @@
     </table>
 </div>
 
-<!-- Modal Tambah Benefit -->
+<!-- Modal Tambah detail Benefit -->
 <div class="modal fade" id="tambahdbenefit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -67,16 +69,18 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="judul" class="form-label">Judul</label>
-                        <input type="text" class="form-control" id="judul" name="judul" placeholder="Nama Judul" required>
+                        <input type="text" class="form-control" id="judul" name="judul" placeholder="Nama Judul"
+                            required>
                     </div>
 
                     <div class="mb-3">
                         <label for="isi" class="form-label">Isi</label>
-                        <textarea type="textarea" class="form-control" id="isi" name="isi" placeholder="Isi" required></textarea>
+                        <textarea type="textarea" class="form-control" id="isi" name="isi" placeholder="Isi"
+                            required></textarea>
                     </div>
 
                     <div class="mb-3">
-                    <label for="idBenefit" class="form-label">Benefit</label>
+                        <label for="idBenefit" class="form-label">Benefit</label>
                         <select class="form-select" name="idBenefit" aria-label="Default select example">
                             <option value="" selected>pilih benefit</option>
                             @foreach ($benefit as $b)
@@ -94,9 +98,10 @@
     </div>
 </div>
 
-<!-- Modal Edit benefit -->
+<!-- Modal Edit detail benefit -->
 @foreach($dbenefit as $dben)
-<div class="modal fade" id="editdbenefit{{ $dben->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editdbenefit{{ $dben->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="/admin/detailbenefit/{{ $dben->id }}" method="POST">
@@ -109,16 +114,18 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="judul" class="form-label">Judul</label>
-                        <input type="text" class="form-control" id="judul" name="judul" value="{{ $dben->judul }}" required>
+                        <input type="text" class="form-control" id="judul" name="judul" value="{{ $dben->judul }}"
+                            required>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="isi" class="form-label">Isi</label>
-                        <textarea type="textarea" class="form-control" id="isi" name="isi" required>{{ $dben->isi }}</textarea>
+                        <textarea type="textarea" class="form-control" id="isi" name="isi"
+                            required>{{ $dben->isi }}</textarea>
                     </div>
-                    
+
                     <div class="mb-3">
-                    <label for="idBenefit" class="form-label">Benefit</label>
+                        <label for="idBenefit" class="form-label">Benefit</label>
                         <select class="form-select" name="idBenefit" aria-label="Default select example">
                             <option value="{{ $dben->idBenefit }}" selected>{{ $dben->benefit->benefit }}</option>
                             @foreach ($benefit as $b)
@@ -126,6 +133,7 @@
                             @endforeach
                         </select>
                     </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>

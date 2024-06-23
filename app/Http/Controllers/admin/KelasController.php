@@ -18,8 +18,10 @@ class KelasController extends Controller
      */
     public function index()
     {
+        $kelas = Kelas::with('paket', 'mentor')->latest()->get();
+
         return view("admin.pages.kelas.index", [
-            'kelas'   => Kelas::latest()->get(),
+            'kelas'   => $kelas,
             'paket'   => Paket::latest()->get(),
             'mentor'  => Mentor::latest()->get(),
         ]);

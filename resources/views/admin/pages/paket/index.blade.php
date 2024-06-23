@@ -27,6 +27,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama paket</th>
+                <th scope="col">Harga lama</th>
                 <th scope="col">Harga Paket</th>
                 <th scope="col">Aksi</th>
             </tr>
@@ -36,6 +37,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $p->paket }}</td>
+                <td>{{ $p->harga_lama }}</td>
                 <td>{{ $p->harga }}</td>
                 <td>
                     <button type="button" class="btn btn-primary edit-btn" data-bs-toggle="modal"
@@ -75,6 +77,11 @@
                         <input type="number" class="form-control" id="harga" name="harga" placeholder="Harga Paket"
                             required>
                     </div>
+                    <div class="mb-3">
+                        <label for="harga_lama" class="form-label">harga lama</label>
+                        <input type="number" class="form-control" id="harga_lama" name="harga_lama" placeholder="Harga Paket lama"
+                            required>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -109,10 +116,17 @@
                         <input type="number" class="form-control" id="harga" name="harga" value="{{ $pak->harga }}"
                             required>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="harga_lama" class="form-label">Harga paket Lama</label>
+                        <input type="number" class="form-control" id="harga_lama" name="harga_lama" value="{{ $pak->harga_lama }}"
+                            required>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>

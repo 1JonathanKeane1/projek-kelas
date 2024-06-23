@@ -55,7 +55,8 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="benefit" class="form-label">Nama Benefit</label>
-                        <input type="text" class="form-control" id="benefit" name="benefit" placeholder="Nama benefit" required>
+                        <input type="text" class="form-control" id="benefit" name="benefit" placeholder="Nama benefit"
+                            required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -69,7 +70,8 @@
 
 <!-- Modal Edit benefit -->
 @foreach($benefit as $ben)
-<div class="modal fade" id="editModal{{ $ben->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal{{ $ben->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="/admin/benefit/{{ $ben->id }}" method="POST">
@@ -82,8 +84,10 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="benefit" class="form-label">Nama Benefit</label>
-                        <input type="text" class="form-control" id="benefit" name="benefit" value="{{ $ben->benefit }}" required>
+                        <input type="text" class="form-control" id="benefit" name="benefit" value="{{ $ben->benefit }}"
+                            required>
                     </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>

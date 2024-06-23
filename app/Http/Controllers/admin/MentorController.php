@@ -81,7 +81,6 @@ class MentorController extends Controller
      */
     public function update(Request $request, Mentor $mentor)
     {
-        dd($mentor);
 
         $data = $request->validate([
             'mentor'=> 'required',
@@ -98,9 +97,8 @@ class MentorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Menor $mentor)
+    public function destroy(Mentor $mentor)
     {
-        dd($mentor);
 
         Mentor::destroy($mentor->id);
 

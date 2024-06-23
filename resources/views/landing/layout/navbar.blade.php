@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container">
         <!-- Logo -->
         <a class="navbar-brand" href="#">
@@ -17,13 +17,13 @@
                     <a class="nav-link active" aria-current="page" href="#">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Benefit</a>
+                    <a class="nav-link" href="#benefit">Benefit</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Paket</a>
+                    <a class="nav-link" href="#paket">Paket</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Kelas</a>
+                    <a class="nav-link" href="#kelas">Kelas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Kontak Kami</a>
@@ -31,10 +31,10 @@
             </ul>
 
             <div class="d-flex">
-                <a class="btn btn-primary me-2" href="#">Ajukan Demo</a>
+                <a class="btn btn-fill me-2" href="#">Ajukan Demo</a>
                 @auth
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    <button class="btn btn-holo dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Halo, {{ Auth::user()->name }}
                     </button>
@@ -44,7 +44,7 @@
                     </ul>
                 </div>
                 @else
-                <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#authModal" type="button">Masuk</a>
+                <a class="btn btn-holo" data-bs-toggle="modal" data-bs-target="#authModal" type="button">Masuk</a>
                 @endauth
             </div>
         </div>

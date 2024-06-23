@@ -19,4 +19,8 @@ class VideoKelas extends Model
     public function kelas(){
         return $this->belongsTo(Kelas::class, 'idKelas');
     }
+
+    public function waktu(){
+        return $this->hasMany(Durasi::class, 'idVideo');
+    }
 }

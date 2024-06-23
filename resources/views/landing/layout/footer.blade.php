@@ -39,10 +39,10 @@
                 <p class="font-weight-bold text-uppercase footer-menu">Hubungi Kami</p>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#"> Nabila.Anggraini@kelas.com</a>
+                        <a href="#"><i class="bi bi-envelope"></i>Nabila.Anggraini@kelas.com</a>
                     </li>
                     <li>
-                        <a href="#"> Whatsapp</a>
+                        <a href="#"><i class="bi bi-whatsapp"></i>+62 811 3366 763 (Nabilla Anggraini)</a>
                     </li>
                 </ul>
             </div>

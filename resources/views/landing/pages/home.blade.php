@@ -9,22 +9,12 @@
                 <h1 class="fw-light">Tingkatkan Peforma Bisnis Anda</h1>
                 <p>Kami menawarkan solusi terbaik untuk bisnis Anda</p>
                 <p>
-                    <a href="#" class="btn btn-primary my-2">Ajukan Demo</a>
+                    <a href="#" class="btn btn-fill my-2">Ajukan Demo</a>
                 </p>
             </div>
         </div>
     </div>
 </section>
-
-<!-- <section class="hero-section">
-    <div class="hero-overlay"></div>
-    <div class="container hero-content">
-        <h1 class="display-4">Selamat Datang di Website Kami</h1>
-        <p class="lead">Kami menawarkan solusi terbaik untuk bisnis Anda</p>
-        <a href="#" class="btn btn-primary btn-lg">Pelajari Lebih Lanjut</a>
-    </div>
-</section> -->
-
 
 <section class="partner mt-3 mb-4">
     <div class="container-fluid">
@@ -104,7 +94,7 @@
     </div>
 </section>
 
-<section class="benefit">
+<section class="benefit" id="benefit">
     <div class="container mb-4">
         <div class="row mb-2">
             <h2 class="text-center mb-2">Bagaimana Kelas Center Membantu Anda</h2>
@@ -113,107 +103,119 @@
         </div>
         <div class="row mt-3">
             <ul class="nav nav-pills justify-content-center">
+                @foreach($benefit as $b)
                 <li class="nav-item">
-                    <a class="nav-link active" id="lms-tab" data-bs-toggle="tab" data-bs-target="#lms"
-                        role="tab">LMS</a>
+                    <a class="nav-link custom-nav-link @if ($loop->first) active @endif" id="{{ $b->id }}-tab" data-bs-toggle="tab"
+                        data-bs-target="#{{ $b->id }}" role="tab">{{ $b->benefit }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="featured-tab" data-bs-toggle="tab" data-bs-target="#featured"
-                        role="tab">Featured</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="video-tab" data-bs-toggle="tab" data-bs-target="#video" role="tab">Video
-                        Learning + Live Webinar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="inquiry-tab" data-bs-toggle="tab" data-bs-target="#inquiry"
-                        role="tab">Inquiry learning</a>
-                </li>
+                @endforeach
             </ul>
             <div class="tab-content mt-4 mb-5" id="myTabContent">
-                <div class="tab-pane fade show active" id="lms" role="tabpanel" aria-labelledby="lms-tab">
+                @foreach ($benefit as $ben )
+                <div class="tab-pane fade @if ($loop->first) show active @endif" id="{{ $ben->id }}" role="tabpanel"
+                    aria-labelledby="{{ $b->id }}-tab">
                     <div class="row">
                         <div class="col-md">
-                            <h3>Optimalkan potensi karyawan anda dengan Learning Management System</h3>
-                            <p>Berdayakan tim Anda untuk mencapai kesuksesan dengan data yang akurat dan solusi
-                                pembelajaran yang terintegrasi. Transformasikan pengelolaan sumber daya manusia Anda dan
-                                hadirkan produktivitas yang unggul dengan LMS kami!</p>
-                            <p class="benefit-head ps-3">Issued Certificated</p>
-                            <p>Berikan kemudahan dalam mengatur dan mendistribusikan sertifikat kepada setiap karyawan.
-                            </p>
-                            <p class="benefit-head ps-3"> On Boarding</p>
-                            <p>Memastikan setiap karyawan siap memberikan kontribusi maksimal sejak hari pertama
-                                mereka bergabung</p>
-                            <p class="benefit-head ps-3">Training On-demand</p>
-                            <p>Training On-Demand yang berfokus pada pengalaman pengguna, pelatihan berkualitas
-                                tinggi menjadi lebih mudah diakses dan disesuaikan dengan kebutuhan Anda.</p>
+                            @foreach($ben->detail as $index => $det)
+                            @if($index == 0)
+                            <h3>{{ $det->judul }}</h3>
+                            <p>{{ $det->isi }}</p>
+                            @else
+                            <p class="benefit-head ps-3"><i class="bi bi-check2 pe-2"
+                                    style="color: green;"></i>{{ $det->judul }}</p>
+                            <p>{{ $det->isi }}</p>
+                            @endif
+                            @endforeach
                         </div>
                         <div class="col-md">
                             <img src="" alt="">
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="featured" role="tabpanel" aria-labelledby="featured-tab">Featured</div>
-                <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">Video Learning</div>
-                <div class="tab-pane fade" id="inquiry" role="tabpanel" aria-labelledby="inquiry-tab">Inquiry</div>
+                @endforeach
             </div>
         </div>
     </div>
 </section>
 
-<section class="paket">
-    <div class="container mt-5 mb-3">
+<section class="paket" id="paket">
+    <div class="container mt-5 mb-3 ">
         <h3 class="text-center mb-4 mt-2">Pilihan Paket Untuk Perusahaan di Kelas Center</h3>
-        <div class="row mb-2">
-            @foreach ($dpaket as $p)
-            <div class="col-md">
+        <div class="row mb-2 d-none d-md-flex">
+            @foreach ($paket as $p)
+            <div class="col">
                 <div class="card card-paket">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $p->paket->paket }}</h5>
-                        <p class="card-text">{{ $p->isi }}</p>
-                        <p><strong>{{ $p->paket->harga }}</strong>/bulan</p>
+                        <h5 class="card-title"><Strong><i class="bi bi-lightbulb pe-2"></i>{{ $p->paket }}</strong></h5>
+                        <p class="kelebihan">Kelebihan</p>
+                        @foreach ($p->detailpaket as $det)
+                        <p class="card-text"><i class="bi bi-check-circle-fill pe-2"></i>{{ $det->isi }}</p>
+                        @endforeach
+                        <hr style="border-top: 1px dashed black">
+                        <p>Rp{{ $p->harga_lama }}</p>
+                        <p><strong class="harga">Rp{{ $p->harga }}</strong>/bulan</p>
                         @auth
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-paket" data-bs-toggle="modal"
                             data-bs-target="#beliModal{{ $p->paket->id }}">
                             Pilih Paket
                         </button>
                         @else
-                        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#authModal"
+                        <a class="btn btn-paket" data-bs-toggle="modal" data-bs-target="#authModal"
                             type="button">Pilih Paket</a>
                         @endauth
                     </div>
                 </div>
             </div>
             @endforeach
-            <!-- <div class="col-md">
-                <div class="card card-paket">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <button class="btn btn-primary">Pilih Paket</button>
+        </div>
+
+        <div id="cardCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach ($paket as $index => $p)
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title"><Strong><i class="bi bi-lightbulb pe-2"></i>{{ $p->paket }}</strong></h5>
+                        <p class="kelebihan">Kelebihan</p>
+                        @foreach ($p->detailpaket as $det)
+                        <p class="card-text"><i class="bi bi-check-circle-fill pe-2"></i>{{ $det->isi }}</p>
+                        @endforeach
+                        <hr style="border-top: 1px dashed black">
+                        <p>{{ $p->harga_lama }}</p>
+                        <p><strong class="harga">{{ $p->harga }}</strong>/bulan</p>
+                        @auth
+                        <button type="button" class="btn btn-paket" data-bs-toggle="modal"
+                            data-bs-target="#beliModal{{ $p->paket->id }}">
+                            Pilih Paket
+                        </button>
+                        @else
+                        <a class="btn btn-paket" data-bs-toggle="modal" data-bs-target="#authModal"
+                            type="button">Pilih Paket</a>
+                        @endauth
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            <div class="col-md">
-                <div class="card card-paket">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                </div>
-            </div> -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div class="container enterprise-bar">
-            <div class="text">Enterprise</div>
-            <div class="text">>100 users All Access Class More Features</div>
-            <a href="" class="contact-button">Contact Us</a>
-        </div>
+    </div>
+
+    <div class="container enterprise-bar">
+        <div class="text"><i class="bi bi-buildings pe-3"></i>Enterprise</div>
+        <div class="text"><i class="bi bi-check-circle-fill pe-2"></i>>100 users <i class="bi bi-check-circle-fill pe-2"></i>All Access Class <i class="bi bi-check-circle-fill pe-2"></i>More Features</div>
+        <a href="" class="contact-button">Contact Us</a>
     </div>
 </section>
 
-<section class="video">
+<section class="video" id="kelas">
     <div class="container mt-4">
         <h3 class="text-center">Lebih dari 2000+ Learning Video</h3>
         <p class="text-center">Kami juga sudah menyediakan banyak pelatihan yang beragam, pelatihan disusun dan dibuat
@@ -222,83 +224,54 @@
 
         <div class="row">
             <ul class="nav nav-pills justify-content-center">
+                @foreach($kelas as $k)
                 <li class="nav-item">
-                    <a class="nav-link active" id="kelas-tab" data-bs-toggle="tab" data-bs-target="#kelas"
-                        role="tab">Kelas.com</a>
+                    <a class="nav-link custom-nav-link @if ($loop->first) active @endif" id="{{ $k->id }}-tab" data-bs-toggle="tab"
+                        data-bs-target="#{{ $k->nama }}" role="tab">{{ $k->nama }}</a>
                 </li>
-                <li class="nav-item">
+                @endforeach
+                <!-- <li class="nav-item">
                     <a class="nav-link" id="work-tab" data-bs-toggle="tab" data-bs-target="#work"
                         role="tab">Kelas.work</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="boot-tab" data-bs-toggle="tab" data-bs-target="#bootcamp" role="tab">Video
                         Bootcamp</a>
-                </li>
+                </li> -->
             </ul>
             <div class="tab-content mt-4 mb-5" id="myTabContent">
-                <div class="tab-pane fade show active" id="kelas" role="tabpanel" aria-labelledby="kelas-tab">
+                @foreach ($kelas as $kel)
+                <div class="tab-pane fade @if ($loop->first) show active @endif" id="{{ $kel->nama }}" role="tabpanel"
+                    aria-labelledby="{{ $kel->id }}-tab">
                     <div class="row">
-                        <div class="col-md">
+                        @foreach($kel->detail as $kd)
+                        <div class="col-6 col-sm-3 col-md col-lg">
                             <div class="card">
                                 <div class="video-container">
-                                    <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0"
+                                    <iframe src="{{ $kd->link }}" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                                 </div>
                                 <div class="description">
-                                    <h2>Video Title</h2>
-                                    <p>This is the description of the video. It gives an overview of what the video is
-                                        about and
-                                        any other relevant information.</p>
+                                    <h3 class="v-kelas">{{ $kd->judul }}</h2>
+                                    <p class="v-kelas-p">{{ $kd->deskripsi }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="card">
-                                <div class="video-container">
-                                    <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                </div>
-                                <div class="description">
-                                    <h2>Video Title</h2>
-                                    <p>This is the description of the video. It gives an overview of what the video is
-                                        about and
-                                        any other relevant information.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="card">
-                                <div class="video-container">
-                                    <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                </div>
-                                <div class="description">
-                                    <h2>Video Title</h2>
-                                    <p>This is the description of the video. It gives an overview of what the video is
-                                        about and
-                                        any other relevant information.</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-                <div class="tab-pane fade" id="work" role="tabpanel" aria-labelledby="work-tab">Featured</div>
-                <div class="tab-pane fade" id="bootcamp" role="tabpanel" aria-labelledby="bootcamp-tab">Video Learning
-                </div>
+                @endforeach
             </div>
         </div>
-    </div>
 </section>
 
 <div class="container-fluid cta">
-    <div class="content pt-5">
+    <div class="content pt-3">
         <h3>Tingkatkan Kualitas Perusahaan Anda</h3>
         <p>Kami ingin membantu dan menunjukkan kepada Anda bagaimana Kelas corp dapat membantu dalam mengelola pelatihan
             dan membuat prosesnya lebih cepat dan lebih mudah.</p>
-        <a type="button" class="btn btn-primary">Ajukan Demo</a>
+        <a type="button" class="btn btn-fill">Ajukan Demo</a>
     </div>
 </div>
 

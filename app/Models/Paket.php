@@ -14,6 +14,7 @@ class Paket extends Model
     protected $fillable = [
         "paket",
         "harga",
+        "harga_lama",
     ];
 
     public function kelas (){
@@ -22,5 +23,10 @@ class Paket extends Model
 
     public function detailpaket (){
     	return $this->hasMany(DetailPaket::class, 'idPaket');
+    }
+
+    public function pembelian()
+    {
+        return $this->hasMany(Pembelian::class, 'idPaket');
     }
 }

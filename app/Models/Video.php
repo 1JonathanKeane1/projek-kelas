@@ -11,5 +11,9 @@ class Video extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['link', 'nama'];
+    protected $fillable = ['nama'];
+
+    public function detail(){
+        return $this->hasMany(DetailVideo::class, 'idVideo');
+    }
 }

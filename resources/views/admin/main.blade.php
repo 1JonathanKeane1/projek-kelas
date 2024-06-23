@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- title -->
-    <title>Kelas.com - Admin</title>
+    <title>Kelas Center - Admin</title>
 
     <!-- icon -->
     <link href="/assets/landing/img/Logo kelas for business_landscape 2 2.png" rel="icon">

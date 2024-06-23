@@ -5,10 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Paket;
-use App\Models\DetailPaket;
+Use App\Models\Video;
+use App\Models\DetailVideo;
 
-class DetailPaketController extends Controller
+class DetailVideoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class DetailPaketController extends Controller
      */
     public function index()
     {
-        return view("admin.pages.dpaket.index", [
-            'paket'   => Paket::latest()->get(),
-            'dpaket'  => DetailPaket::latest()->get()
+        return view("admin.pages.dvideo.index", [
+            'video'   => Video::latest()->get(),
+            'dvideo'   => DetailVideo::latest()->get()
         ]);
     }
 
@@ -41,15 +41,16 @@ class DetailPaketController extends Controller
      */
     public function store(Request $request)
     {
-        
         $data = $request->validate([
-            'idPaket'     => 'required|max:255',
-            'isi'       => 'required|max:255',
+            'link'      => 'required',
+            'idVideo'   => 'required',
+            'judul'     => 'required',
+            'deskripsi'  => 'required',
         ]);
 
-        DetailPaket::create($data);
+        DetailVideo::create($data);
 
-        return redirect()->route('detailpaket.index')->with('success','Berhasil menambah data');
+        return redirect()->route('detailvideo.index')->with('success','Berhasil menambah data');
     }
 
     /**
@@ -83,15 +84,17 @@ class DetailPaketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $data = $request->validate([
-            'isi'       => 'required|max:255',
-            'idPaket'   => 'required|unquie:detail_pakets'
-        ]);
-        
-        DetailPaket::where('id', $id)->update($data);
 
-        return redirect()->route('detailpaket.index')->with('success','Berhasil merubah data');
+        $data = $request->validate([
+            'link'      => 'required',
+            'idVideo'   => 'required',
+            'judul'     => 'required',
+            'deskripsi'  => 'required',
+        ]);
+
+        DetailVideo::where('id', $id)->update($data);
+
+        return redirect()->route('detailvideo.index')->with('success','Berhasil merubah data');
     }
 
     /**
@@ -102,9 +105,9 @@ class DetailPaketController extends Controller
      */
     public function destroy($id)
     {
-        DetailPaket::where('id', $id)->delete();
+        DetailVideo::destroy($id);
 
-        return redirect()->route('detailpaket.index')
+        return redirect()->route('detailvideo.index')
             ->with('success', 'berhasil dihapus.');
     }
 }
